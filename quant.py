@@ -11,6 +11,9 @@ def quantum_examples(operator,count,l):
         c = ClassicalRegister(2) 
         sp_state = QuantumCircuit(q, c)
         sp_state.cs(q[0],q[1])
+    else:
+        print('Ошибка')
+        return  
     if operator == 'x':
         print(f'Выполнение вентиля Паули X на {count} повторений')
         sp_state.x(q)
@@ -37,13 +40,14 @@ def quantum_examples(operator,count,l):
         result = execute(sp_state, backend, shots = count).result()
         print(result.get_counts(sp_state))   
     else:
+        print('Ошибка')
         return   
 
 for i in ('x','h','hh'):
     quantum_examples(i,2048,1)
 
 for i in ('x','h','hh'):
-    quantum_examples(i,2048,2)
+    quantum_examples(i,2048,4)
 
 
 
